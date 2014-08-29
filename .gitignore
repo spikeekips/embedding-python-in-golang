@@ -1,0 +1,5 @@
+*.pyc
+*.pyo
+.*.sw?
+.smb*
+with-go-python/gopython-test-with-go-python

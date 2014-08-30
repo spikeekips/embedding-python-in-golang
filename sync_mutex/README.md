@@ -1,7 +1,7 @@
 ## Lock the python-related code with `sync.Mutex`
 
 ```
-$ cd src/github.com/spikeekips/embedding-python-in-golang/sync_mutex
+$ cd src/github.com/spikeekips/embedding-python-in-golang
 $ make sync_mutex.go
 2014/08/29 20:51:21 python embedding test in golang.
 2014/08/29 20:51:21 run inside goroutine
@@ -31,7 +31,7 @@ $ make sync_mutex.go
 ]
 ```
 
-`sync_mutex.go` just encoding golang data in python and decoding python data in
+`sync_mutex/main.go` just encoding golang data in python and decoding python data in
 golang. It locks the `embed_function` using `sync.Mutex` and `embed_function`
 `import`s `json_dump.py` using `go-python`, so simple.
 

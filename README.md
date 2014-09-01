@@ -67,8 +67,10 @@ $ cd src/github.com/spikeekips/embedding-python-in-golang
 $ make sync_mutex.go
 ```
 
+For more detailed, see [sync_mutex/README.md](sync_mutex/README.md)
 
-#### Using Pthread, free from multi-threads problem, using go-pthread and go-python
+
+#### Using Pthread, free from multi-threads problem, based on go-pthread and go-python
 
 ```
 $ go get github.com/sbinet/go-python
@@ -80,12 +82,16 @@ $ cd src/github.com/spikeekips/embedding-python-in-golang
 $ make pthreads.go
 ```
 
+For more detailed, see [pthreads/README.md](pthreads/README.md)
 
-#### Using Pthread, free from multi-threads problem, using `cgo API`
+
+#### Using Pthread, free from multi-threads problem, based on `cgo API`, without go-pthread and go-python
 
 ```
 $ cd src/github.com/spikeekips/embedding-python-in-golang
 $ make pthreads2.go
 ```
+
+For more detailed, see [pthreads2/README.md](pthreads2/README.md)
 
 

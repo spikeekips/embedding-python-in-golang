@@ -1,4 +1,4 @@
-.PHONY = clean
+.PHONY = clean pthreads.go
 
 PWD=$(shell pwd)
 ROOT=$(shell (cd $(PWD)/../../../../; pwd))
@@ -13,8 +13,12 @@ clean:
 	done
 
 %.go: clean
-
 	export GOPATH=$(ROOT) PYTHONPATH=$(PWD)/$(TARGET):${PYTHONPATH}; \
-	go run $(PWD)/$(TARGET)/main.go;
+	go run -v -x ./$(TARGET)/main.go;
+
+
+pthreads.go: clean
+	export GOPATH=$(ROOT) PYTHONPATH=$(PWD)/$(TARGET):${PYTHONPATH}; \
+	go run -v -x -compiler="gc" $(PWD)/$(TARGET)/*.go;
 
 

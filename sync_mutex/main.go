@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/op/go-logging"
 	"github.com/sbinet/go-python"
-	"github.com/spikeekips/embedding-python-in-golang"
+	"github.com/spikeekips/embedding-python-in-golang/common"
 	"sync"
 )
 

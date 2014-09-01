@@ -42,11 +42,8 @@ import json
 
 def run (*a) :
     return json.dumps(a, )
-
-
 ```
 
 Everything was fine whether goroutine or not.
-
 
 

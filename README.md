@@ -58,12 +58,7 @@ ready to code.
 #### Lock the python-related code with `sync.Mutex`
 
 ```
-$ go get github.com/sbinet/go-python
-$ go get github.com/liamzdenek/go-pthreads
-$ go get github.com/op/go-logging
-
 $ cd src/github.com/spikeekips/embedding-python-in-golang
-
 $ make sync_mutex.go
 ```
 
@@ -73,10 +68,6 @@ For more detailed, see [sync_mutex/README.md](sync_mutex/README.md)
 #### Using Pthread, free from multi-threads problem, based on go-pthread and go-python
 
 ```
-$ go get github.com/sbinet/go-python
-$ go get github.com/liamzdenek/go-pthreads
-$ go get github.com/op/go-logging
-
 $ cd src/github.com/spikeekips/embedding-python-in-golang
 
 $ make pthreads.go

@@ -46,12 +46,7 @@ $ mkdir -p {bin,pkg,src}
 $ export GOPATH=$HOME/gopython
 ```
 
-install the requiments,
-
 ```
-$ go get github.com/sbinet/go-python
-$ go get github.com/liamzdenek/go-pthreads
-$ go get github.com/op/go-logging
 $ go get github.com/spikeekips/embedding-python-in-golang
 ```
 
@@ -60,7 +55,37 @@ ready to code.
 
 ### Test
 
-1. (Lock the python-related code with `sync.Mutex`)[with-go-python]
-2. TODO: (Using Pthread, free from multi-threads problem)[with-go-python]
+#### Lock the python-related code with `sync.Mutex`
+
+```
+$ go get github.com/sbinet/go-python
+$ go get github.com/liamzdenek/go-pthreads
+$ go get github.com/op/go-logging
+
+$ cd src/github.com/spikeekips/embedding-python-in-golang
+
+$ make sync_mutex.go
+```
+
+
+#### Using Pthread, free from multi-threads problem, using go-pthread and go-python
+
+```
+$ go get github.com/sbinet/go-python
+$ go get github.com/liamzdenek/go-pthreads
+$ go get github.com/op/go-logging
+
+$ cd src/github.com/spikeekips/embedding-python-in-golang
+
+$ make pthreads.go
+```
+
+
+#### Using Pthread, free from multi-threads problem, using `cgo API`
+
+```
+$ cd src/github.com/spikeekips/embedding-python-in-golang
+$ make pthreads2.go
+```
 
 

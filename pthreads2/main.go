@@ -72,10 +72,8 @@ import (
 
 var callbacks map[*C.pthread_t]ThreadCallback
 
-type Thread uintptr
 type ThreadCallback func(a *C.PyObject)
 
-var create_callback chan ThreadCallback
 var lock sync.Mutex
 
 //export createThreadCallback

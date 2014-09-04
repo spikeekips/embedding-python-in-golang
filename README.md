@@ -98,7 +98,7 @@ For more detailed, see [pthreads2/README.md](pthreads2/README.md)
 
 #### Running WSGI server inside Golang's `net/http`
 
-...
+For more detailed, see [wsgi-simple/README.md](wsgi-simple/README.md)
 
 
 

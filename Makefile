@@ -1,4 +1,4 @@
-.PHONY = clean ab ab.go
+.PHONY = clean ab ab.go curl curl.go
 
 PWD=$(shell pwd)
 ROOT=$(shell (cd $(PWD)/../../../../; pwd))
@@ -13,13 +13,23 @@ clean:
 	done
 
 %.go: clean
-	export GOPATH=$(ROOT) PYTHONPATH=$(PWD)/$(TARGET):${PYTHONPATH}; \
-	go run -v -x -compiler="gc" $(PWD)/$(TARGET)/*.go;
+	export GOPATH=$(ROOT) PYTHONPATH=$(PWD)/$(TARGET)/main:${PYTHONPATH}; \
+	go run -v -x -compiler="gc" $(PWD)/$(TARGET)/main/*.go;
 
 ab:
 	ab -n 1000 -n 500 http://127.0.0.1:8080/;
 
 ab.go:
 	ab -n 1000 -n 500 http://127.0.0.1:8080/go;
+
+
+curl:
+	curl -H "X-A: $(date)" -v http://127.0.0.1:8080/; \
+	echo;
+
+
+curl.go:
+	curl -H "X-A: $(date)" -v http://127.0.0.1:8080/go; \
+	echo;
 
 

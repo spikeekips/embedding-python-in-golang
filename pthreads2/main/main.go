@@ -78,8 +78,8 @@ var lock sync.Mutex
 
 //export createThreadCallback
 func createThreadCallback(pid *C.pthread_t) {
-	//lock.Lock()
-	//defer lock.Unlock()
+	lock.Lock()
+	defer lock.Unlock()
 
 	_cb, _ok := callbacks[pid]
 	if !_ok {
@@ -120,7 +120,7 @@ func init() {
 func main() {
 	log.Info("python embedding test in golang, using `pthreads`.")
 
-	n := 200
+	n := 400
 	var _wg sync.WaitGroup
 	_wg.Add(n)
 

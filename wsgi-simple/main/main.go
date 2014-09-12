@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/op/go-logging"
-	"github.com/spikeekips/embedding-python-in-golang/wsgi-simple/package"
+	"github.com/spikeekips/embedding-python-in-golang/wsgi-simple"
 	"net/http"
 	//"sync"
 	//"time"

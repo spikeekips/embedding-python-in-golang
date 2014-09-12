@@ -5,8 +5,6 @@ import (
 	"github.com/op/go-logging"
 	"github.com/spikeekips/embedding-python-in-golang/wsgi-simple"
 	"net/http"
-	//"sync"
-	//"time"
 )
 
 var log = logging.MustGetLogger("gowsgi")
@@ -43,7 +41,7 @@ func main() {
 		}()
 	*/
 
-	log.Info("go-wsgi-django started.")
+	log.Info("wsgi-simple started.")
 
 	http.HandleFunc("/go", default_handler)
 	http.HandleFunc("/", wsgi.WSGIHandler)

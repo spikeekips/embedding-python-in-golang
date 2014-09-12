@@ -19,7 +19,6 @@ def application (environ, start_response, ) :
     # start_response
     _response_headers = [
             ('Content-Type', 'application/json'),
-            #('Content-Length', str(len(_response_body))),
             ('X-py', datetime.datetime.now().isoformat(), ),
         ]
 

@@ -336,7 +336,6 @@ import "unsafe"
 import (
 	"fmt"
 	"github.com/op/go-logging"
-	//"github.com/sbinet/go-python"
 	"net/http"
 	"runtime"
 	"sync"

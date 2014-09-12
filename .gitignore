@@ -1,4 +1,6 @@
 *.*~
+*.pid
+*.log
 *.pyc
 *.pyo
 .*.sw?

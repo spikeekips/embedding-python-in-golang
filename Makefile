@@ -1,9 +1,15 @@
-.PHONY = clean ab ab.go curl curl.go
+.PHONY = clean ab ab.go curl curl.go wsgi-django.uwsgi
 
-PWD=$(shell pwd)
-ROOT=$(shell (cd $(PWD)/../../../../; pwd))
+PWD = $(shell pwd)
+ROOT = $(shell (cd $(PWD)/../../../../; pwd))
 DIRECTORY_CLEAN = $(ROOT)/lib $(PWD)
-TARGET=$(shell basename $@ .go)
+
+TARGET = $(shell echo $@ | awk -F'.' '{print $$1}')
+
+DIRECTORY_MAIN = $(PWD)/$(TARGET)/main
+
+PORT = 8080
+URL = http://127.0.0.1:$(PORT)
 
 clean: 
 
@@ -12,24 +18,31 @@ clean:
 		find $$i -type f -name "*.pyc" -delete ; \
 	done
 
+
 %.go: clean
-	export GOPATH=$(ROOT) PYTHONPATH=$(PWD)/$(TARGET)/main:${PYTHONPATH}; \
-	go run -v -x -compiler="gc" $(PWD)/$(TARGET)/main/*.go;
+	export GOPATH=$(ROOT) PYTHONPATH=$(DIRECTORY_MAIN):${PYTHONPATH}; \
+	go run -v -x -compiler="gc" $(DIRECTORY_MAIN)/*.go;
+
+
+wsgi-django.uwsgi: clean
+	uwsgi --virtualenv $(ROOT) --pythonpath $(DIRECTORY_MAIN) --wsgi-file $(DIRECTORY_MAIN)/wsgi.py --chdir $(ROOT) --env DJANGO_SETTINGS_MODULE=full.settings --master --pidfile=$(DIRECTORY_MAIN)/uwsgi.pid --lazy-apps --http=0.0.0.0:$(PORT) --processes=3 --disable-logging --vacuum --enable-threads --max-requests=2000;
+
 
 ab:
-	ab -n 1000 -n 500 http://127.0.0.1:8080/;
+	ab -n 1000 -n 500 $(URL)/;
+
 
 ab.go:
-	ab -n 1000 -n 500 http://127.0.0.1:8080/go;
+	ab -n 1000 -n 500 $(URL)/go;
 
 
 curl:
-	curl -H "X-A: $(date)" -v "http://127.0.0.1:8080/?a=1&b=2&c=3"; \
+	curl -H "X-A: $(date)" -v "$(URL)/?a=1&b=2&c=3"; \
 	echo;
 
 
 curl.go:
-	curl -H "X-A: $(date)" -v http://127.0.0.1:8080/go?a=1&b=2&c=3; \
+	curl -H "X-A: $(date)" -v $(URL)/go?a=1&b=2&c=3; \
 	echo;
 
 

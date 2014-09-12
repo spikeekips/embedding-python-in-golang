@@ -1,6 +1,8 @@
+*.*~
 *.pyc
 *.pyo
 .*.sw?
 .smb*
 sync_mutex
 with-go-python/gopython-test-with-go-python
+wsgi-django/main/db.sqlite3

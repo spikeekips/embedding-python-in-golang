@@ -46,8 +46,9 @@ $ sudo apt-get install golang golang-doc golang-go.tools golang-go.tools-dev gol
 create base environment.
 
 ```
-$ mkdir ~/gopython; cd gopython
-$ mkdir -p {bin,pkg,src}
+$ virtualenv ~/gopython
+$ cd ~gopython
+$ mkdir -p {pkg,src}
 $ export GOPATH=$HOME/gopython
 ```
 
@@ -96,9 +97,14 @@ For more detailed, see [pthreads2/README.md](pthreads2/README.md)
 ...
 
 
-#### Running WSGI server inside Golang's `net/http`
+#### Running WSGI application inside Golang's `net/http`
 
 For more detailed, see [wsgi-simple/README.md](wsgi-simple/README.md)
+
+
+#### Running Django WSGI application inside Golang's `net/http`
+
+For more detailed, see [wsgi-django/README.md](wsgi-django/README.md)
 
 
 

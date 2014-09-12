@@ -24,12 +24,12 @@ ab.go:
 
 
 curl:
-	curl -H "X-A: $(date)" -v http://127.0.0.1:8080/; \
+	curl -H "X-A: $(date)" -v "http://127.0.0.1:8080/?a=1&b=2&c=3"; \
 	echo;
 
 
 curl.go:
-	curl -H "X-A: $(date)" -v http://127.0.0.1:8080/go; \
+	curl -H "X-A: $(date)" -v http://127.0.0.1:8080/go?a=1&b=2&c=3; \
 	echo;
 
 

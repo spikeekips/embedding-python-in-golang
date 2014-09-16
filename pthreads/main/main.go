@@ -10,10 +10,10 @@ import "C"
 
 import (
 	"fmt"
-	"github.com/liamzdenek/go-pthreads"
 	"github.com/op/go-logging"
 	"github.com/sbinet/go-python"
 	"github.com/spikeekips/embedding-python-in-golang/common"
+	"github.com/spikeekips/go-pthreads"
 	"runtime"
 	"sync"
 )
@@ -64,8 +64,7 @@ func create_thread(ch chan bool, args []string, kw map[string]string) {
 	})
 
 	defer func() {
-		C.pthread_cancel((C.pthread_t)(thread))
-		C.pthread_kill((C.pthread_t)(thread), C.SIGSEGV)
+		thread.Kill()
 	}()
 
 	<-_ch

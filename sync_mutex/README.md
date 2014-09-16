@@ -2,7 +2,6 @@
 
 ```
 $ go get github.com/sbinet/go-python
-$ go get github.com/liamzdenek/go-pthreads
 $ go get github.com/op/go-logging
 
 $ cd src/github.com/spikeekips/embedding-python-in-golang

@@ -20,7 +20,7 @@ func default_handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	logging.SetFormatter(logging.MustStringFormatter(
 		"[%{level}] %{message} (%{module})"))
-	//logging.SetLevel(logging.INFO, "wsgi")
+	logging.SetLevel(logging.INFO, "wsgi")
 	logging.SetLevel(logging.DEBUG, "wsgi")
 
 	log.Info("wsgi-django started.")

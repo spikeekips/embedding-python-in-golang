@@ -14,18 +14,19 @@ package wsgi
 static void initialize_thread () {
     if (Py_IsInitialized() == 0) {
         Py_Initialize();
-        //fprintf(stdout, "> Py_Initialize\n");
+        fprintf(stdout, "> `Py_Initialize`\n");
     }
 
     // make sure the GIL is correctly initialized
     if (PyEval_ThreadsInitialized() == 0) {
         PyEval_InitThreads();
-        //fprintf(stdout, "> PyEval_ThreadsInitialized\n");
+        fprintf(stdout, "> `PyEval_InitThreads`\n");
         PyEval_ReleaseThread(PyGILState_GetThisThreadState());
+        fprintf(stdout, "> `PyEval_ReleaseThread`\n");
     }
 }
 
-extern void createCallback();
+extern void createCallback(pthread_t* pid);
 
 static void createThread(pthread_t* pid) {
     pthread_create(pid, NULL, (void*)createCallback, pid);
@@ -45,7 +46,7 @@ import "C"
 import (
 	"fmt"
 	"github.com/op/go-logging"
-	"runtime"
+	//"runtime"
 	"sync"
 )
 
@@ -70,8 +71,8 @@ func CreateThread(function func()) {
 
 //export createCallback
 func createCallback(pid *C.pthread_t) {
-	runtime.LockOSThread()
-	defer runtime.UnlockOSThread()
+	//runtime.LockOSThread()
+	//defer runtime.UnlockOSThread()
 
 	_gstate := C.start_thread()
 	defer C.end_thread(_gstate)

@@ -19,7 +19,6 @@ class OhDaeSu (models.Model, ) :
 
     def eat (self, mandus, ) :
         self.mandu = mandus
-        self.save()
 
         return
 

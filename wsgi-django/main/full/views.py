@@ -21,6 +21,7 @@ def home (request, ) :
     _daesu.eat(
             map(lambda x : models_oldboy.Mandu.objects.create(), range(15, ), ),
         )
+    _daesu.save()
 
     _response = HttpResponse(
             json.dumps(

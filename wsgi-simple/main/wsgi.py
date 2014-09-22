@@ -22,7 +22,7 @@ def application (environ, start_response, ) :
             ('X-py', datetime.datetime.now().isoformat(), ),
         ]
 
-    _status = '%d OK' % random.choice(range(500))
+    _status = '%d OK' % random.choice(range(100, 501, ), )
     start_response(_status, _response_headers, )
 
     return json.dumps(

@@ -19,6 +19,33 @@ $ mkdir -p {pkg,src}
 $ export GOPATH=$HOME/gopython
 ```
 
+#### OSX
+
+If you are using `homebrew`, install `pkg-config` and write `python-2.7.pc` file manually. It needs.
+
+```
+$ brew -v install pkg-config
+```
+
+and then, write new file, `/usr/local/lib/pkgconfig/python-2.7.pc`
+
+```
+prefix=/System/Library/Frameworks/Python.framework/Versions/2.7
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Python
+Description: Python library
+Requires:
+Version: 2.7
+Libs.private: -lpthread -ldl  -lutil
+Libs: -L${libdir} -ldl -lpython2.7
+Cflags: -I${includedir}/python2.7 -I${includedir}/python2.7 -fno-strict-aliasing -fno-common -dynamic -g -Os -pipe -fno-common -fno-strict-aliasing -fwrapv -DENABLE_DTRACE -DMACOSX -DNDEBUG -Wall -Wstrict-prototypes -Wshorten-64-to-32 -DNDEBUG -g -fwrapv -Os -Wall -Wstrict-prototypes -DENABLE_DTRACE
+```
+
+
+#### Install Source
 ```
 $ go get github.com/spikeekips/embedding-python-in-golang
 ```

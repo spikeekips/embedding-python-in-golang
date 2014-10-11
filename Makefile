@@ -5,6 +5,7 @@ ROOT = $(shell (cd $(PWD)/../../../../; pwd))
 DIRECTORY_CLEAN = $(ROOT)/lib $(PWD)
 
 TARGET = $(shell echo $@ | awk -F'.' '{print $$1}')
+SUB_TARGET=$(shell echo $@ | awk -F'.' '{print "." $$2 "." $$3}' | sed -e 's/{.}$$//g' -e 's/.go.$$/.go/g' -e 's/^.//g')
 
 DIRECTORY_MAIN = $(PWD)/$(TARGET)/main
 
@@ -18,6 +19,10 @@ clean:
 		find $$i -type f -name "*.pyc" -delete ; \
 	done
 
+
+threadpool.%.go: clean
+	export GOPATH=$(ROOT) PYTHONPATH=$(DIRECTORY_MAIN):${PYTHONPATH}; \
+	go run -v -x -compiler="gc" $(DIRECTORY_MAIN)/common.go $(DIRECTORY_MAIN)/$(SUB_TARGET);
 
 %.go: clean
 	export GOPATH=$(ROOT) PYTHONPATH=$(DIRECTORY_MAIN):${PYTHONPATH}; \

@@ -1,4 +1,4 @@
-.PHONY = clean ab ab.go curl curl.go wsgi-django.uwsgi
+.PHONY = clean ab ab.go curl curl.go wsgi-django.uwsgi threadpool.go
 
 PWD = $(shell pwd)
 ROOT = $(shell (cd $(PWD)/../../../../; pwd))
@@ -20,9 +20,14 @@ clean:
 	done
 
 
+threadpool.go:
+	#
+
+
 threadpool.%.go: clean
 	export GOPATH=$(ROOT) PYTHONPATH=$(DIRECTORY_MAIN):${PYTHONPATH}; \
 	go run -v -x -compiler="gc" $(DIRECTORY_MAIN)/common.go $(DIRECTORY_MAIN)/$(SUB_TARGET);
+
 
 %.go: clean
 	export GOPATH=$(ROOT) PYTHONPATH=$(DIRECTORY_MAIN):${PYTHONPATH}; \
